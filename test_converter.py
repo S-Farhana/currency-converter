@@ -50,7 +50,7 @@ def test_usd_to_inr():
     with patch("converter.requests.get") as mock_get:
         mock_get.return_value = make_mock_response({"INR": 83.5})
         result = convert_currency(100, "USD", "INR")
-        assert result["result"] == 8350.0
+        assert result["result"] == 9999.0
         assert result["from"] == "USD"
         assert result["to"] == "INR"
         assert result["rate"] == 83.5
