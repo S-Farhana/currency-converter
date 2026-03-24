@@ -1,0 +1,30 @@
+// Jenkinsfile (with Docker)
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t currency-converter .'
+            }
+        }
+
+        stage('Run Tests in Container') {
+            steps {
+                sh 'docker run --rm currency-converter pytest test_converter.py -v'
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                sh 'docker run -d --name converter-app currency-converter'
+                echo 'App running in Docker container!'
+            }
+        }
+    }
+
+    post {
+        success { echo 'Docker pipeline passed!' }
+        failure { echo 'Pipeline failed. Check Docker logs.' }
+    }
+}
