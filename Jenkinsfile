@@ -36,7 +36,7 @@ pipeline {
                 echo "Installing Python dependencies..."
                 sh '''
                     python3 --version
-                    pip3 install -r requirements.txt
+                    pip3 install -r requirements.txt --break-system-packages
                 '''
             }
         }
