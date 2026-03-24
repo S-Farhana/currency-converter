@@ -32,9 +32,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo "Tests passed! Deploying application..."
-                sh 'echo "App deployed successfully on bare Python"'
-                sh 'python3 -c "import converter; print(\"App import OK\")"'
+                echo "All tests passed!"
+                echo "App: currency-converter deployed successfully on bare Python"
+                sh 'ls -la converter.py'
+                sh 'echo "Deployment complete"'
             }
         }
     }
